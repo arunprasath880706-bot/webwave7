@@ -1,0 +1,155 @@
+@import "tailwindcss";
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+:root {
+  --color-v-raw: #0252a5;               /* Premium flyer deep royal blue */
+  --color-vl-raw: #003d7a;              /* Even deeper navy for texts */
+  --color-c-raw: #00b4d8;               /* Vibrant high-fidelity flyer cyan */
+  --color-cl-raw: #e0f2fe;              /* Super soft sky cyan */
+  --color-pk-raw: #0077b6;              /* Medium flyer accent blue */
+  --color-bg-raw: #e8f5ff;              /* Light sky base */
+  
+  --text-theme-primary-raw: #1e3a60;    /* Deep steel text for description */
+  --text-theme-secondary-raw: #475569;  /* Slate-600 */
+  --text-theme-heading-raw: #02254e;    /* Deep navy title format */
+  --glass-bg-raw: rgba(255, 255, 255, 0.75);
+  --glass-border-raw: rgba(2, 82, 165, 0.12);
+  --card-bg-raw: rgba(255, 255, 255, 0.92);
+  --body-text-invert: #ffffff;
+  --border-light-helper: rgba(2, 82, 165, 0.08);
+}
+
+.theme-dark {
+  --color-v-raw: #0252a5;
+  --color-vl-raw: #003d7a;
+  --color-c-raw: #00b4d8;
+  --color-cl-raw: #e0f2fe;
+  --color-pk-raw: #0077b6;
+  --color-bg-raw: #e8f5ff;
+  
+  --text-theme-primary-raw: #1e3a60;
+  --text-theme-secondary-raw: #475569;
+  --text-theme-heading-raw: #02254e;
+  --glass-bg-raw: rgba(255, 255, 255, 0.75);
+  --glass-border-raw: rgba(2, 82, 165, 0.12);
+  --card-bg-raw: rgba(255, 255, 255, 0.92);
+  --body-text-invert: #ffffff;
+  --border-light-helper: rgba(2, 82, 165, 0.08);
+}
+
+.theme-light {
+  /* Same as default root class to enforce absolute flyer theme by default */
+  --color-v-raw: #0252a5;
+  --color-vl-raw: #003d7a;
+  --color-c-raw: #00b4d8;
+  --color-cl-raw: #e0f2fe;
+  --color-pk-raw: #0077b6;
+  --color-bg-raw: #e8f5ff;
+  
+  --text-theme-primary-raw: #1e3a60;
+  --text-theme-secondary-raw: #475569;
+  --text-theme-heading-raw: #02254e;
+  --glass-bg-raw: rgba(255, 255, 255, 0.75);
+  --glass-border-raw: rgba(2, 82, 165, 0.12);
+  --card-bg-raw: rgba(255, 255, 255, 0.92);
+  --body-text-invert: #ffffff;
+  --border-light-helper: rgba(2, 82, 165, 0.08);
+}
+
+@theme {
+  --font-sans: "Outfit", "Inter", system-ui, sans-serif;
+  --font-display: "Outfit", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+  
+  --color-v: var(--color-v-raw);
+  --color-vl: var(--color-vl-raw);
+  --color-c: var(--color-c-raw);
+  --color-cl: var(--color-cl-raw);
+  --color-pk: var(--color-pk-raw);
+  --color-bg: var(--color-bg-raw);
+  
+  --color-theme-primary: var(--text-theme-primary-raw);
+  --color-theme-secondary: var(--text-theme-secondary-raw);
+  --color-theme-heading: var(--text-theme-heading-raw);
+  --color-theme-glass: var(--glass-bg-raw);
+  --color-theme-glass-border: var(--glass-border-raw);
+  --color-theme-card: var(--card-bg-raw);
+}
+
+/* Custom glowing & drift effects */
+@keyframes drift {
+  0% {
+    transform: translate(0, 0) scale(1) rotate(0deg);
+  }
+  50% {
+    transform: translate(40px, -60px) scale(1.15) rotate(180deg);
+  }
+  100% {
+    transform: translate(-30px, 40px) scale(0.9) rotate(360deg);
+  }
+}
+
+@keyframes drift-reverse {
+  0% {
+    transform: translate(0, 0) scale(1.1) rotate(360deg);
+  }
+  50% {
+    transform: translate(-50px, 50px) scale(0.85) rotate(180deg);
+  }
+  100% {
+    transform: translate(30px, -20px) scale(1.05) rotate(0deg);
+  }
+}
+
+.animate-drift {
+  animation: drift 25s ease-in-out infinite alternate;
+}
+
+.animate-drift-reverse {
+  animation: drift-reverse 30s ease-in-out infinite alternate;
+}
+
+/* Glassmorphism utility */
+.glass-panel {
+  background: var(--glass-bg-raw);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border-raw);
+  transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glass-panel-hover {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-panel-hover:hover {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(124, 58, 237, 0.3);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.theme-light .glass-panel-hover:hover {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: rgba(2, 82, 165, 0.3);
+  box-shadow: 0 20px 40px rgba(2, 82, 165, 0.15);
+}
+
+/* Custom scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-bg-raw);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+}
+.theme-light ::-webkit-scrollbar-thumb {
+  background: rgba(2, 82, 165, 0.2);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
